@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>University</title>
+<script>
+function validate_form(f)
+{
+var first_invalid_component=null;
+var is_valid=true;
+if(f.email_id.value.trim().length==0)
+{
+is_valid=false;
+first_invalid_component=f.email_id;
+document.getElementById('email_id_error_section').innerHTML='Required';
+}
+if(f.password.value.trim().length==0)
+{
+is_valid=false;
+if(first_invalid_component==null)first_invalid_component=f.password;
+document.getElementById('password_error_section').innerHTML='Required'
+}
+if(!is_valid)
+{
+first_invalid_component.focus();
+}
+alert(is_valid);
+return is_valid;
+
+}
+</script>
+<style>
+.input_error_section
+{
+color:red;
+}
+</style>
+</head>
+<body>
+<h1>Authentication</h1>
+<h3>Invalid email id and password</h3>
+<form id='loginKaro' method='GET' action='/university/authenticateKaro' onsubmit='return validate_form(this)'>
+Email Id
+<input type='text' name='email_id' id='email_id' value='something@gmail.com'>
+<span id='email_id_error_section'class='input_error_section' ></span>
+<br/>
+Password
+<input type='text' name='password' id='password'>
+<span id='password_error_section' class='input_error_section'></span>
+<br/>
+<button type='submit'>Login</button>
+</form>
+</body>
+</html>

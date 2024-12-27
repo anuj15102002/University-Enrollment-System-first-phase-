@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Create Account</title>
+<script>
+function validate_email_id(email_id)
+{
+var sc='~!#$%^&*()_+=[]{};:,</?';
+var dotIndex=email_id.indexOf('.');
+var atTheRateIndex=email_id.indexOf('@');
+
+if(email_id.indexOf('@')==-1 || email_id.indexOf('@')==0 || email_id.indexOf('@')==0) 
+{
+return false;
+}
+if(email_id.indexOf('.')==-1 || email_id.indexOf('.')==email_id.length-1 || email_id.indexOf('.')==0)
+{
+return false;
+}
+if(dotIndex==atTheRateIndex+1)return false;
+if(email_id.indexOf('@')!=email_id.lastIndexOf('@'))return false;
+if(email_id.indexOf('.')!=email_id.lastIndexOf('.'))return false;
+if(email_id.indexOf(' ')!=-1)return false;
+for(var i=0;i<sc.length;++i)
+{
+var m=sc.charAt(i);
+if(email_id.indexOf(m)!=-1)
+{
+alert('email should only contain (a-z),(0-9) and (.) as special character before @');
+return false;
+}
+}
+
+}
+function validate_password(password)
+{
+//password should contain atleast 1 lower case,atleast 1 upper case,atleast 1 special_character,atleast 1 number
+var specialCharacter='@!#$*';
+var lowerCase='abcdefghijklmnopqrstuvwxyz';
+var upperCase='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var digit='0123456789';
+var c1=false;
+var c2=false;
+var c3=false;
+var c4=false;
+
+var m;
+for(var i=0;i<password.length;i++)
+{
+m=password.charAt(i);
+if(!c1)c1=lowerCase.indexOf(m)!=-1;
+if(!c2)c2=upperCase.indexOf(m)!=-1;
+if(!c3)c3=digit.indexOf(m)!=-1;
+if(!c4)c4=specialCharacter.indexOf(m)!=-1;
+}
+alert(c1 && c2 && c3 && c4);
+return c1 && c2 && c3 && c4;
+}
+function validate_form(f)
+{
+var first_name=f.first_name.value.trim();  //here f.first_name (first_name is name property)
+var last_name=f.last_name.value.trim();    //here f.last_name (last_name is name property)
+var email_id=f.email_id.value.trim();      //here f.email_id (email_id is name property) 
+var password=f.password.value.trim();      //here f.password (password is name property)
+var re_password=f.re_password.value.trim();//here f.re_passowrd (re_password is name property)
+var mobile_number=f.mobile_number.value.trim();//here f.mobile_number(mobile_number is name property)
+ 
+var is_invalid;
+var first_invalid_component=null;
+
+var first_name_error_section=document.getElementById('first_name_error_section');
+var last_name_error_section=document.getElementById('last_name_error_section');
+var email_id_error_section=document.getElementById('email_id_error_section');
+var password_error_section=document.getElementById('password_error_section');
+var re_password_error_section=document.getElementById('re_password_error_section');
+var mobile_number_error_section=document.getElementById('mobile_number_error_section');
+
+first_name_error_section.innerHTML='';
+last_name_error_section.innerHTML='';
+email_id_error_section.innerHTML='';
+password_error_section.innerHTML='';
+re_password_error_section.innerHTML='';
+mobile_number_error_section.innerHTML='';
+
+
+if(first_name.length==0)
+{
+first_name_error_section.innerHTML='first name required';
+is_invalid=false;
+first_invalid_component=f.first_name;
+}
+if(last_name.length==0)
+{
+last_name_error_section.innerHTML='last_name_required';
+is_invalid=false;
+if(first_invalid_component==null)first_invalid_component=f.last_name;
+}
+if(email_id.length==0)
+{
+email_id_error_section.innerHTML='email id required';
+is_invalid=false;
+if(first_invalid_component==null)first_invalid_component=f.email_id;
+}
+if(password.length==0)
+{
+password_error_section.innerHTML='password required';
+is_invalid=false;
+if(first_invalid_component==null)first_invalid_component=f.password;
+}
+if(re_password.length==0)
+{
+re_password_error_section.innerHTML='re type password is required';
+is_invalid=false;
+if(first_invalid_component==null)first_invalid_component=f.re_password;
+}
+if(mobile_number.length==0)
+{
+mobile_number_error_section.innerHTML='Mobile Number is required';
+is_invalid=false;
+if(first_invalid_component==null)first_invalid_component=f.mobile_number;
+}
+if(!is_invalid)
+{
+first_invalid_component.focus();
+}
+
+if(password.length<8)
+{
+alert('password must contain atleast 8 characters');
+return false;
+}
+if(password!=re_password)
+{
+alert('Wrong password');
+return false;
+}
+if(valid_password(password)==false)
+{
+alert('Invalid password format');
+return false;
+}
+if(validate_email_id(email_id)==false)
+{
+alert('invalid email id format');
+return false;
+}
+alert(is_invalid);
+return is_invalid;
+}
+</script>
+<style>
+.input_error_section
+{
+color:#BA0000;
+}
+</style>
+</head>
+<body>
+<h1>University</h1>
+<h5>Create Account<h5>
+<form id='account_creation_form' method='GET' action='/university/accountCreateKaro' onsubmit='return validate_form(this)'>
+First Name
+<input type='text' name='first_name' id='first_name'>*
+<span id='first_name_error_section' class='input_error_section'></span>
+<br/>
+Last Name
+<input type='text' name='last_name' if='last_name'>*
+<span id='last_name_error_section' class='input_error_section'></span>
+<br/>
+Email id
+<input type='text' name='email_id' id='email_id'>*
+<span id='email_id_error_section' class='input_error_section'></span>
+<br/>
+Password
+<input type='text' name='password' id='password'>*
+<span id='password_error_section' class='input_error_section'></span>
+(minimum 8 character ,atleast 1 upper case,1 lower case,1 special character,1 digit)
+<br/>
+Re-type Password
+<input type='password' name='re_password' id='re_password'>*
+<span id='re_password_error_section' class='input_error_section'></span>
+<br/>
+Mobile Number
+<input type='text' name='mobile_number' id='mobile_number'>*
+<span id='mobile_number_error_section' class='input_error_section'></span>
+<br/>
+<button type='submit'>Create Account</button>
+</form>
+<br/>
+<a href='index.html'>Home</a>
+</body>
+</html>

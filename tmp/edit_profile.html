@@ -1,0 +1,55 @@
+<!DOTYPE HTML>
+<HTML>
+<head>
+<title>University</title>
+<script>
+function validate_form(f)
+{
+var isValid=true;
+var firstInvalidComponent=null;
+document.getElementById('first_name_error_section').innerHTML='';
+document.getElementById('last_name_error_section').innerHTML='';
+if(f.first_name.value.trim().length==0)
+{
+isValid=false;
+firstInvalidComponent=f.first_name;
+document.getElementById('first_name_error_section').innerHTML='Required';
+}
+if(f.last_name.value.trim().length==0)
+{
+isValid=false;
+if(firstInvalidComponent==null)firstInvalidComponent=f.last_name;
+document.getElementById('last_name_error_section').innerHTML='Required';
+}
+if(!isValid)
+{
+firstInvalidComponent.focus();
+}
+return isValid;
+}
+</script>
+
+<style>
+.input_error_section
+{
+color:red;
+}
+</style>
+
+</head>
+<body>
+<form id='editProfile' name='editProfile' action='/university/editProfile' method='GET' onsubmit='return validate_form(this)'>
+<h1>University</h1>
+<h3>Edit Profiel</h3>
+First Name
+<input type='text' id='first_name' name='first_name'>
+<span id='first_name_error_section' class='input_error_section'></span>
+<br/>
+Last Name 
+<input type='text' id='last_name' name='last_name'>
+<span id='last_name_error_section' class='input_error_section'></span><br/>
+<br/>
+<button type='submit'>Update</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>University</title>
+<script>
+function validate_form(f)
+{
+var is_valid=true;
+document.getElementById('code_sent_to_email_id_error_section').innerHTML='';
+document.getElementById('code_sent_to_mobile_number_error_section').innerHTML='';
+var first_invalid_component=null;
+if(f.code_sent_to_email_id.value.trim().length==0)
+{
+is_valid=false;
+document.getElementById('code_sent_to_email_id_error_section').innerHTML='Required';
+first_invalid_component=f.code_sent_to_email_id;
+}
+if(f.code_sent_to_mobile_number.value.trim().length==0)
+{
+is_valid=false;
+document.getElementById('code_sent_to_mobile_number_error_section').innerHTML='Required';
+if(first_invalid_component==null)first_invalid_component=f.code_sent_to_mobile_number;
+}
+if(!is_valid)first_invalid_component.focus();
+alert(is_valid);
+return is_valid;
+}
+</script>
+<style>
+.input_error_section
+{
+color:red;
+}
+</style>
+</head>
+<body>
+<h1>University</h1>
+<h3>Verifying your email id and mobile number</h3>
+<form id='verification_form' name='verification_form' action='/university/verifyCommunicationChannels' onsubmit='return validate_form(this)' >
+Enter code sent to email(something@gmail.com)
+<input type='text' id='code_sent_to_email_id' name='code_sent_to_email_id'>
+<span id='code_sent_to_email_id_error_section' class='input_error_section'></span>
+<br/>
+Enter code sent to mobile number(9999999999)
+<input type='text' id='code_sent_to_mobile_number' name='code_sent_to_mobile_number'>
+<span id='code_sent_to_mobile_number_error_section' class='input_error_section'></span><br/>
+<button type='submit'>Verify</button>
+</form>
+<br/>
+<br/>
+
+<form action='/university/logout'>
+<button type='submit'>Logout</button>
+</form>
+</body>
+</html>

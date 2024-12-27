@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+  version="6.0"
+  metadata-complete="true">
+
+  <display-name>Welcome to Tomcat</display-name>
+  <description>
+     Welcome to Tomcat
+  </description>s
+
+<servlet>
+<servlet-name>AccountCreator</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.AccountCreator</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/accountCreateKaro</url-pattern>
+<servlet-name>AccountCreator</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>Authenticator</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.Authenticator</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/authenticateKaro</url-pattern>
+<servlet-name>Authenticator</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>UpdateProfile</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.UpdateProfile</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/updateProfile</url-pattern>
+<servlet-name>UpdateProfile</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>EditProfile</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.EditProfile</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/editProfile</url-pattern>
+<servlet-name>EditProfile</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>Logout</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.Logout</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/logout</url-pattern>
+<servlet-name>Logout</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>ChangePassword</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.ChangePassword</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/changePassword</url-pattern>
+<servlet-name>ChangePassword</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>UpdatePassword</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.UpdatePassword</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/updatePassword</url-pattern>
+<servlet-name>UpdatePassword</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>VerifyCommunicationChannels</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.VerifyCommunicationChannels</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/verifyCommunicationChannels</url-pattern>
+<servlet-name>VerifyCommunicationChannels</servlet-name>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>Forward</servlet-name>
+<servlet-class>com.thinking.machines.university.servlets.forward</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<url-pattern>/forward</url-pattern>
+<servlet-name>Forward</servlet-name>
+</servlet-mapping>
+</web-app>
